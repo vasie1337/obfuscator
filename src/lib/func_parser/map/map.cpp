@@ -1,9 +1,8 @@
+#include <cassert>
 #include <regex>
 
 #include "func_parser/map/map.hpp"
-#include "util/logger.hpp"
-
-#include <cassert>
+#include <es3n1n/common/logger.hpp>
 
 namespace func_parser::map {
     namespace {
@@ -21,7 +20,7 @@ namespace func_parser::map {
     function_list_t discover_functions(const std::filesystem::path& map_path, const std::vector<pe::section_t>& sections) {
         // Reading map file
         //
-        const auto map_content = util::read_file(map_path);
+        const auto map_content = files::read_file(map_path).value();
         if (map_content.empty()) {
             throw std::runtime_error("Empty map file");
         }

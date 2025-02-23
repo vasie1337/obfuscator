@@ -4,9 +4,10 @@
 #include "obfuscator/config_merger/config_merger.hpp"
 #include "obfuscator/function.hpp"
 #include "obfuscator/transforms/scheduler.hpp"
-#include "util/logger.hpp"
 #include "util/progress.hpp"
-#include "util/random.hpp"
+
+#include <es3n1n/common/logger.hpp>
+#include <es3n1n/common/random.hpp>
 
 namespace obfuscator {
     constexpr size_t kTextSectionAlignment = 0x10;
@@ -296,7 +297,7 @@ namespace obfuscator {
         const auto new_filename = filename_no_ext + ".protected" + file_ext;
 
         out_path = out_path.replace_filename(new_filename);
-        util::write_file(out_path, new_img.data(), new_img.size());
+        files::write_file(out_path, new_img.data(), new_img.size());
 
         logger::info("obfuscator: saved output to {}", out_path.string());
         return out_path;

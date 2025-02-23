@@ -1,6 +1,6 @@
 #pragma once
 
-#include "util/memory/address.hpp"
+#include <es3n1n/common/memory/address.hpp>
 #include "util/sections.hpp"
 #include "util/structs.hpp"
 #include "util/types.hpp"

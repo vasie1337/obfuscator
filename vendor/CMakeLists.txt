@@ -72,3 +72,13 @@ else()
 endif()
 add_subdirectory(LLVMDemangle)
 set(CMAKE_FOLDER ${CMKR_CMAKE_FOLDER})
+
+# Subdirectory: common
+set(CMKR_CMAKE_FOLDER ${CMAKE_FOLDER})
+if(CMAKE_FOLDER)
+	set(CMAKE_FOLDER "${CMAKE_FOLDER}/common")
+else()
+	set(CMAKE_FOLDER common)
+endif()
+add_subdirectory(common)
+set(CMAKE_FOLDER ${CMKR_CMAKE_FOLDER})

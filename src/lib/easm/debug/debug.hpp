@@ -1,6 +1,6 @@
 #pragma once
 #include "analysis/common/debug.hpp"
-#include "util/memory/address.hpp"
+#include <es3n1n/common/memory/address.hpp>
 
 namespace easm {
     inline void dump_program(const zasm::Program& program) {

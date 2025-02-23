@@ -1,5 +1,5 @@
 #include "mathop/operations/impl/util.hpp"
-#include "util/random.hpp"
+#include <es3n1n/common/random.hpp>
 
 namespace mathop::operations {
     /// \brief Emulate the math operation under the two operands

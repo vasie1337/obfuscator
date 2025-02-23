@@ -1,16 +1,9 @@
 #pragma once
-#include "memory/address.hpp"
-#include "util/structs.hpp"
-#include <array>
+#include <es3n1n/common/memory/address.hpp>
 
 namespace types {
     template <class Ty, class... Types>
     inline constexpr bool is_any_of_v = std::disjunction_v<std::is_same<Ty, Types>...>;
-
-    template <class... Args>
-    auto to_array(Args&&... args) {
-        return std::array<std::common_type_t<Args...>, sizeof...(Args)>{std::forward<Args>(args)...};
-    }
 
     using rva_t = memory::address;
 
@@ -20,19 +13,6 @@ namespace types {
 
         [[nodiscard]] std::size_t size() const {
             return (end - start).as<std::size_t>();
-        }
-    };
-
-    template <typename T>
-    class Singleton {
-    protected:
-        DEFAULT_CTOR_DTOR(Singleton);
-        NON_COPYABLE(Singleton);
-
-    public:
-        [[nodiscard]] static T& get() {
-            static T instance = {};
-            return instance;
         }
     };
 

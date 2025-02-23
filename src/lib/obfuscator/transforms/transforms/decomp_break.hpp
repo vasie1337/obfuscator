@@ -1,7 +1,7 @@
 #pragma once
 #include "obfuscator/transforms/scheduler.hpp"
 #include "obfuscator/transforms/transforms/util/bcf.hpp"
-#include "util/random.hpp"
+#include <es3n1n/common/random.hpp>
 
 namespace obfuscator::transforms {
     namespace detail::anti_ida_decomp {

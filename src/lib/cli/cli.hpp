@@ -1,7 +1,7 @@
 #pragma once
 #include "obfuscator/transforms/configs.hpp"
 #include "obfuscator/transforms/scheduler.hpp"
-#include "util/logger.hpp"
+#include <es3n1n/common/logger.hpp>
 
 namespace cli {
     namespace detail {

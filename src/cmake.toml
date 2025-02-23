@@ -17,6 +17,7 @@ link-libraries = [
     "linux-pe",
     "magic_enum",
     "LLVMDemangle",
+    "es3n1n::common",
 ]
 
 [target.obfuscator]

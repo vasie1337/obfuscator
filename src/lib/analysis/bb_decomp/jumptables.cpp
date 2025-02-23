@@ -1,7 +1,7 @@
 #include "analysis/analysis.hpp"
 #include "analysis/bb_decomp/bb_decomp.hpp"
 #include "analysis/common/debug.hpp"
-#include "util/logger.hpp"
+#include <es3n1n/common/logger.hpp>
 
 /// \todo @es3n1n: Notify the linker somehow that it should erase jumptable pointers too
 namespace analysis::bb_decomp {

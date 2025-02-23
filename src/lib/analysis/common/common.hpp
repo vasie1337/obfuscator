@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <atomic>
 #include <cstdint>
+#include <es3n1n/common/logger.hpp>
 #include <functional>
 #include <iterator>
 #include <vector>

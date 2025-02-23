@@ -1,6 +1,6 @@
 #pragma once
 #include "analysis/common/common.hpp"
-#include "util/files.hpp"
+#include <es3n1n/common/files.hpp>
 
 #include <sstream>
 
@@ -36,7 +36,7 @@ namespace analysis::debug {
         }
 
         const auto data = ss.str();
-        util::write_file(file, reinterpret_cast<const uint8_t*>(data.data()), data.size());
+        files::write_file(file, reinterpret_cast<const uint8_t*>(data.data()), data.size());
     }
 
     [[maybe_unused]] inline void dump_bb(const bb_t& bb) {

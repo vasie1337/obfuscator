@@ -1,7 +1,7 @@
 #pragma once
 #include "easm/easm.hpp"
 #include "pe/pe.hpp"
-#include "util/random.hpp"
+#include <es3n1n/common/random.hpp>
 
 #include <list>
 #include <unordered_set>

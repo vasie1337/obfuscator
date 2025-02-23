@@ -1,6 +1,6 @@
 #include "func_parser/pdb/detail/parser_v7.hpp"
-#include "util/logger.hpp"
-#include "util/memory/address.hpp"
+#include <es3n1n/common/logger.hpp>
+#include <es3n1n/common/memory/address.hpp>
 
 // \note: @es3n1n: s/o to @namazso for the stream related functions
 namespace func_parser::pdb::detail {

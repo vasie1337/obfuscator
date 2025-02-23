@@ -1,6 +1,7 @@
 #include "func_parser/pdb/pdb.hpp"
 #include "func_parser/pdb/detail/parser_v7.hpp"
-#include "util/logger.hpp"
+#include <es3n1n/common/files.hpp>
+#include <es3n1n/common/logger.hpp>
 
 namespace func_parser::pdb {
     function_list_t discover_functions(const std::filesystem::path& pdb_path, const std::uint64_t base_of_code [[maybe_unused]]) {
@@ -12,7 +13,7 @@ namespace func_parser::pdb {
 
         // Reading file
         //
-        const auto pdb_content = util::read_file(pdb_path);
+        const auto pdb_content = files::read_file(pdb_path).value();
         if (pdb_content.empty()) [[unlikely]] {
             return {};
         }

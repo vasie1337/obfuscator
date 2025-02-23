@@ -1,7 +1,6 @@
 #pragma once
 #include "mathop/operations/operations.hpp"
-#include "util/random.hpp"
-#include "util/types.hpp"
+#include <es3n1n/common/random.hpp>
 
 #include <vector>
 

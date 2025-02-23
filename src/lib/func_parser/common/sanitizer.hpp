@@ -1,6 +1,7 @@
 #pragma once
 #include "func_parser/common/common.hpp"
 #include "pe/pe.hpp"
+#include <es3n1n/common/logger.hpp>
 
 namespace func_parser::sanitizer {
     template <pe::any_image_t Img>

@@ -1,6 +1,6 @@
 #pragma once
-#include "logger.hpp"
 #include "util/stopwatch.hpp"
+#include <es3n1n/common/logger.hpp>
 
 namespace util {
     /// \brief Progress-bar object
@@ -31,7 +31,7 @@ namespace util {
             }
 
             /// Print it
-            logger::info(msg.c_str());
+            logger::info("{}", msg.c_str());
         }
 
     private:

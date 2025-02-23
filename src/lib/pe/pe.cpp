@@ -6,7 +6,7 @@
 #include "pe/rebuilder/rebuilder.hpp"
 
 #include "util/format.hpp"
-#include "util/logger.hpp"
+#include <es3n1n/common/logger.hpp>
 #include <magic_enum_all.hpp>
 
 namespace pe {

@@ -3,9 +3,9 @@
 #include "obfuscator/transforms/scheduler.hpp"
 #include "pe/arch/arch.hpp"
 #include "pe/common/common.hpp"
-#include "util/files.hpp"
-#include "util/logger.hpp"
-#include "util/random.hpp"
+#include <es3n1n/common/files.hpp>
+#include <es3n1n/common/logger.hpp>
+#include <es3n1n/common/random.hpp>
 
 namespace {
     template <pe::any_raw_image_t Img>
@@ -22,7 +22,7 @@ namespace {
         const auto binary_path = config.obfuscator_config().binary_path;
 
         logger::info("main: loading binary from {}", binary_path.string());
-        auto file = util::read_file(binary_path);
+        auto file = files::read_file(binary_path).value();
         if (file.empty()) {
             throw std::runtime_error("Got empty binary");
         }

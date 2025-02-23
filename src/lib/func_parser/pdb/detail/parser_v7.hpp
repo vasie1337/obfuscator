@@ -6,8 +6,9 @@
 #include <vector>
 
 #include "func_parser/pdb/detail/structs.hpp"
-#include "util/memory/address.hpp"
-#include "util/types.hpp"
+#include <es3n1n/common/memory/address.hpp>
+#include <es3n1n/common/types.hpp>
+#include <util/structs.hpp>
 
 // \todo: @es3n1n: we should probably use OMAP from the pdb for rva conversion
 
