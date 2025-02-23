@@ -1,8 +1,8 @@
 #pragma once
-#include "obfuscator/transforms/types.hpp"
-#include "util/string_parser.hpp"
-#include "util/types.hpp"
 #include <any>
+
+#include "obfuscator/transforms/types.hpp"
+#include <es3n1n/common/string_parser.hpp>
 
 namespace obfuscator {
     namespace detail {
@@ -67,12 +67,12 @@ namespace obfuscator {
             static std::once_flag fl;
             std::call_once(fl, []() -> void {
                 callbacks[detail::kSharedConfigsVariableNames[detail::CHANCE]] = [](auto* instance_, const auto value_, const auto override_default_) {
-                    instance_->chance(util::string::parse_uint8(value_), override_default_);
+                    instance_->chance(string_parser::parse_uint8(value_), override_default_);
                 };
 
                 callbacks[detail::kSharedConfigsVariableNames[detail::REPEAT_TIMES]] = [](auto* instance_, const auto value_,
                                                                                           const auto override_default_) {
-                    instance_->repeat_times(util::string::parse_uint8(value_), override_default_);
+                    instance_->repeat_times(string_parser::parse_uint8(value_), override_default_);
                 };
             });
 
@@ -213,7 +213,7 @@ namespace obfuscator {
             /// \brief Set new value parsed from string
             /// \param value string that contain the new value
             void parse_value(const std::string_view value) {
-                util::string::parse_to_any(value_, value);
+                string_parser::parse_to_any(value_, value);
             }
 
             /// \brief Verify that this variable has a value set
@@ -255,7 +255,7 @@ namespace obfuscator {
             /// \brief Serialize current value as string
             /// \return string
             [[nodiscard]] std::string serialize() const {
-                return util::string::serialize_any(value_);
+                return string_parser::serialize_any(value_);
             }
 
             /// \brief Set the variable info

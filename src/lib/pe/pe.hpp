@@ -1,9 +1,9 @@
 #pragma once
 
-#include <es3n1n/common/memory/address.hpp>
 #include "util/sections.hpp"
 #include "util/structs.hpp"
 #include "util/types.hpp"
+#include <es3n1n/common/memory/address.hpp>
 
 #include "pe/common/types.hpp"
 
@@ -24,7 +24,7 @@
 
 namespace pe {
     /// Concept for raw images from linux-pe, could also probably check for `win::image_t`
-    template <typename Ty> concept any_raw_image_t = types::is_any_of_v<Ty, win::image_x86_t, win::image_x64_t>;
+    template <typename Ty> concept any_raw_image_t = traits::is_any_of_v<Ty, win::image_x86_t, win::image_x64_t>;
 
     /// Wrapper around pe header data, could be improved and hopefully everything could be merged from the
     ///
@@ -101,7 +101,7 @@ namespace pe {
     };
 
     /// A concept for our Image, so that we can just use it within the templates
-    template <typename Ty> concept any_image_t = types::is_any_of_v<Ty, Image<win::image_x86_t>, Image<win::image_x64_t>>;
+    template <typename Ty> concept any_image_t = traits::is_any_of_v<Ty, Image<win::image_x86_t>, Image<win::image_x64_t>>;
 
     template <template <typename> typename Ty>
     concept pe_generic_class_t = requires {

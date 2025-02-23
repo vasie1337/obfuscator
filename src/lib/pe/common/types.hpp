@@ -1,7 +1,7 @@
 #pragma once
-#include <es3n1n/common/memory/address.hpp>
 #include "util/structs.hpp"
 #include "util/types.hpp"
+#include <es3n1n/common/memory/address.hpp>
 #include <linuxpe>
 #include <optional>
 
@@ -101,7 +101,7 @@ namespace pe {
         }
 
         template <typename Ty>
-            requires(types::is_any_of_v<Ty, win::optional_header_x64_t, win::optional_header_x86_t>)
+            requires(traits::is_any_of_v<Ty, win::optional_header_x64_t, win::optional_header_x86_t>)
         void export_contained_dir(Ty* optional_header) {
             auto set = [this, &optional_header](win::directory_id dir_id, const dir_properties_t props) -> void {
                 auto& dir = optional_header->data_directories.entries[dir_id];

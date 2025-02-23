@@ -124,10 +124,7 @@ set(obfuscator-lib_SOURCES
 	"lib/util/format.hpp"
 	"lib/util/iterators.hpp"
 	"lib/util/passes.hpp"
-	"lib/util/progress.hpp"
 	"lib/util/sections.hpp"
-	"lib/util/stopwatch.hpp"
-	"lib/util/string_parser.hpp"
 	"lib/util/structs.hpp"
 	"lib/util/types.hpp"
 	cmake.toml
@@ -216,10 +213,7 @@ set(obfuscator_SOURCES
 	"lib/util/format.hpp"
 	"lib/util/iterators.hpp"
 	"lib/util/passes.hpp"
-	"lib/util/progress.hpp"
 	"lib/util/sections.hpp"
-	"lib/util/stopwatch.hpp"
-	"lib/util/string_parser.hpp"
 	"lib/util/structs.hpp"
 	"lib/util/types.hpp"
 	cmake.toml
@@ -315,10 +309,7 @@ if(OBFUSCATOR_BUILD_TESTS) # build-tests
 		"lib/util/format.hpp"
 		"lib/util/iterators.hpp"
 		"lib/util/passes.hpp"
-		"lib/util/progress.hpp"
 		"lib/util/sections.hpp"
-		"lib/util/stopwatch.hpp"
-		"lib/util/string_parser.hpp"
 		"lib/util/structs.hpp"
 		"lib/util/types.hpp"
 		cmake.toml

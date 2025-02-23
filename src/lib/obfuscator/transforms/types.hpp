@@ -22,7 +22,7 @@ namespace obfuscator {
             return __FUNCSIG__;
 #else
             if constexpr (sizeof(__PRETTY_FUNCTION__) == sizeof(__FUNCTION__)) {
-                static_assert(types::always_false_v<>, "Unsupported pretty function");
+                static_assert(traits::always_false_v<>, "Unsupported pretty function");
             }
             return __PRETTY_FUNCTION__;
 #endif

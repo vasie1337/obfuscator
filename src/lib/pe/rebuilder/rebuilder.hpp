@@ -1,6 +1,6 @@
 #pragma once
 #include "pe/rebuilder/detail/common.hpp"
-#include "util/progress.hpp"
+#include <es3n1n/common/progress.hpp>
 
 namespace pe {
     namespace detail {
@@ -24,7 +24,7 @@ namespace pe {
         // Init result data
         //
         std::vector<std::uint8_t> result = {};
-        auto progress = util::Progress("pe: rebuilding", 4);
+        auto progress = progress::Progress("pe: rebuilding", 4);
 
         // Updating .reloc section
         //
