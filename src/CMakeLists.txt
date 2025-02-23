@@ -33,7 +33,6 @@ endif()
 if(UNIX) # unix
 	target_link_options(obfuscator-project INTERFACE
 		-fuse-ld=lld
-		"-Wl,-L/usr/local/lib/"
 	)
 endif()
 
@@ -268,7 +267,6 @@ if(OBFUSCATOR_BUILD_TESTS) # build-tests
 		"tests/func_parser/map/map.msvc.cpp"
 		"tests/func_parser/pdb/pdb.llvm.cpp"
 		"tests/func_parser/pdb/pdb.msvc.cpp"
-		"tests/units.cpp"
 		"lib/analysis/analysis.hpp"
 		"lib/analysis/bb_decomp/bb_decomp.hpp"
 		"lib/analysis/common/common.hpp"

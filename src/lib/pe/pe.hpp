@@ -103,6 +103,12 @@ namespace pe {
     /// A concept for our Image, so that we can just use it within the templates
     template <typename Ty> concept any_image_t = types::is_any_of_v<Ty, Image<win::image_x86_t>, Image<win::image_x64_t>>;
 
+    template <template <typename> typename Ty>
+    concept pe_generic_class_t = requires {
+        typename Ty<Image<win::image_x64_t>>;
+        typename Ty<Image<win::image_x86_t>>;
+    };
+
     /// Converter from `Image` to `win::image_x**_t`
     template <typename Ty>
     struct to_raw_img {

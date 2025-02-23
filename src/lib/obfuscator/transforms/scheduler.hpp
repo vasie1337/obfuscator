@@ -19,7 +19,8 @@ namespace obfuscator {
 
         /// \brief Register a transform under its tag
         /// \tparam Ty Transform type
-        template <template <pe::any_image_t> class Ty>
+        template <template <typename> typename Ty>
+            requires pe::pe_generic_class_t<Ty>
         TransformSharedConfig& register_transform() {
             /// Init transform
             const auto tag = get_transform_tag<Ty>();
@@ -113,7 +114,8 @@ namespace obfuscator {
     public:
         /// \brief Register a desired transform under the transform tag for **both** x64 and x86 architectures
         /// \tparam Ty Transform type
-        template <template <pe::any_image_t Img> class Ty>
+        template <template <typename> typename Ty>
+            requires pe::pe_generic_class_t<Ty>
         TransformSharedConfig& register_transform() {
             for_arch<pe::X64Image>().register_transform<Ty>();
             return for_arch<pe::X86Image>().register_transform<Ty>();
