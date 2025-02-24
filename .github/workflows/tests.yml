@@ -41,6 +41,8 @@ jobs:
       BUILD_TYPE: ${{ matrix.buildtype }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
 
       - name: Setup clang and libc++
         if: contains(matrix.os, 'ubuntu') && matrix.compiler == 'clang'
