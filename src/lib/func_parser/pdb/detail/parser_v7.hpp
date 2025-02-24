@@ -25,7 +25,7 @@ namespace func_parser::pdb::detail {
         void iter_symbols(const std::function<bool(std::uint16_t, memory::address)>& callback) const;
 
         template <typename Ty = DBIRecordHeader>
-        void iter_symbols(const std::uint16_t kind, std::function<void(Ty*)> callback) const {
+        void iter_symbols(const std::uint16_t kind, const std::function<void(Ty*)>& callback) const {
             iter_symbols([=](const std::uint16_t it_kind, const memory::address raw) -> bool {
                 if (it_kind != kind) {
                     return true;

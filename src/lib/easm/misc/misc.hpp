@@ -25,7 +25,7 @@ namespace easm {
             return zasm::toBitSize(sizeof(std::uint32_t) * CHAR_BIT);
         default:
             assert(false); // unknown arch
-            break;
+            std::unreachable();
         }
     }
 
@@ -141,7 +141,7 @@ namespace easm {
         }
 
         assert(false); // what's this? zasm::Imm is handled in the different function
-        return zasm::toBitSize(0);
+        std::unreachable();
     }
 
     inline zasm::BitSize get_operand_size(const zasm::MachineMode machine_mode, const zasm::Instruction* insn, const std::size_t index) {
@@ -169,7 +169,7 @@ namespace easm {
 
             /// Push instruction always pushes the stack width bit size
             if (insn->getMnemonic().value() == ZYDIS_MNEMONIC_PUSH) {
-                return easm::sp_size_for_arch(machine_mode);
+                return sp_size_for_arch(machine_mode);
             }
 
             return op_imm->getBitSize();

@@ -153,7 +153,7 @@ namespace analysis {
             auto* insn_info = node->getUserData<insn_t>();
             if (insn_info == nullptr || insn_info->bb_ref == nullptr) [[unlikely]] {
                 assert(false); // huh?
-                return std::nullopt;
+                std::unreachable();
             }
 
             /// Return info

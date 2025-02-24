@@ -35,8 +35,8 @@ namespace obfuscator::transforms {
             }
 
             /// Get the config vars
-            const bool ghidra_opt = this->ghidra->template value<bool>();
-            const bool ida_opt = this->ida->template value<bool>();
+            const bool ghidra_opt = this->ghidra->value<bool>();
+            const bool ida_opt = this->ida->value<bool>();
             assert(ghidra_opt || ida_opt);
 
             /// Generate an opaque predicate and insert ENTER -1 somewhere over there

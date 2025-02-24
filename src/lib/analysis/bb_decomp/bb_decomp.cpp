@@ -358,11 +358,11 @@ namespace analysis::bb_decomp {
                 continue;
             }
 
-            auto& last_insn = bb->instructions.at(bb->size() - 1);
-            const auto last_mnemonic = last_insn->ref->getMnemonic().value();
+            const auto& last_insn = bb->instructions.at(bb->size() - 1);
 
             /// Looks legit, i think?
-            if (last_mnemonic == ZYDIS_MNEMONIC_JMP || last_mnemonic == ZYDIS_MNEMONIC_RET) {
+            if (const auto last_mnemonic = last_insn->ref->getMnemonic().value();
+                last_mnemonic == ZYDIS_MNEMONIC_JMP || last_mnemonic == ZYDIS_MNEMONIC_RET) {
                 continue;
             }
 
@@ -403,7 +403,7 @@ namespace analysis::bb_decomp {
             /// If there's no next node, then we totally should insert a jmp
             if (next_node != nullptr) {
                 /// Get the next instruction analysis info
-                auto* const next_insn = next_node->getUserData<insn_t>();
+                const auto* const next_insn = next_node->getUserData<insn_t>();
                 if (next_insn == nullptr || !next_insn->rva.has_value()) [[unlikely]] {
                     continue;
                 }
@@ -512,7 +512,7 @@ namespace analysis::bb_decomp {
             /// Looking for the dead CF changer refs
             /// (because since we're splitting them, the dst bb could've been already deleted at some point)
             for (auto it = bb->instructions.rbegin(); it != bb->instructions.rend(); std::advance(it, 1)) {
-                const auto insn = *it;
+                const auto& insn = *it;
                 if (insn->cf.empty()) {
                     continue;
                 }

@@ -87,14 +87,14 @@ namespace analysis::bb_decomp {
                         }
 
                         /// Get the dst reg operand
-                        auto* const dst_op = prev_insn->ref->getOperandIf<zasm::Reg>(0);
-                        auto* const src_op = prev_insn->ref->getOperandIf<zasm::Mem>(1);
-                        if (dst_op == nullptr || src_op == nullptr) {
+                        const auto* const dst_op = prev_insn->ref->getOperandIf<zasm::Reg>(0);
+                        if (auto* const src_op = prev_insn->ref->getOperandIf<zasm::Mem>(1); //
+                            dst_op == nullptr || src_op == nullptr) {
                             return;
                         }
 
                         /// Get the memory operand from index_load
-                        auto* const mem_index_op = (**jump_table.index_load_at)->ref->getOperandIf<zasm::Mem>(1);
+                        const auto* const mem_index_op = (**jump_table.index_load_at)->ref->getOperandIf<zasm::Mem>(1);
                         assert(mem_index_op != nullptr);
 
                         /// If matches, then yeah we found it
@@ -190,8 +190,8 @@ namespace analysis::bb_decomp {
             assert(info.index_load_at.has_value());
 
             /// Obtain the ptr mov operand
-            auto* const pjmp_reg = (**info.index_load_at)->ref->getOperandIf<zasm::Reg>(0);
-            auto* const pmem_op = (**info.index_load_at)->ref->getOperandIf<zasm::Mem>(1);
+            const auto* const pjmp_reg = (**info.index_load_at)->ref->getOperandIf<zasm::Reg>(0);
+            const auto* const pmem_op = (**info.index_load_at)->ref->getOperandIf<zasm::Mem>(1);
             if (pmem_op == nullptr || pjmp_reg == nullptr) [[unlikely]] {
                 throw std::runtime_error("analysis: unable to obtain mem_op/jmp_reg for jumptable expansion");
             }

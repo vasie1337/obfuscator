@@ -22,8 +22,8 @@ namespace cli {
             logger::info("Available {} transforms:", platform_name);
 
             /// Iterate over the transforms
-            auto& scheduler = obfuscator::TransformScheduler::get().for_arch<Img>();
-            for (auto& [tag, transform] : scheduler.transforms) {
+            for (auto& scheduler = obfuscator::TransformScheduler::get().for_arch<Img>(); //
+                 auto& [tag, transform] : scheduler.transforms) {
                 /// Get the shared cfg
                 auto& shared_cfg = obfuscator::TransformSharedConfigStorage::get().get_for(tag);
 

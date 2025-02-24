@@ -2,7 +2,6 @@
 
 #include "util/sections.hpp"
 #include "util/structs.hpp"
-#include "util/types.hpp"
 #include <es3n1n/common/memory/address.hpp>
 
 #include "pe/common/types.hpp"
