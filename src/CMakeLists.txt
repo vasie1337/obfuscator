@@ -241,13 +241,9 @@ endif()
 # Target: obfuscator-tests
 if(OBFUSCATOR_BUILD_TESTS) # build-tests
 	set(obfuscator-tests_SOURCES
-		"tests/analysis/bb_decomp/bb_decomp.llvm.cpp"
-		"tests/analysis/bb_decomp/bb_decomp.msvc.cpp"
-		"tests/func_parser/map/map.ida.cpp"
-		"tests/func_parser/map/map.llvm.cpp"
-		"tests/func_parser/map/map.msvc.cpp"
-		"tests/func_parser/pdb/pdb.llvm.cpp"
-		"tests/func_parser/pdb/pdb.msvc.cpp"
+		"tests/func_parser/map/test.map.compilers.cpp"
+		"tests/func_parser/map/test.map.ida.cpp"
+		"tests/func_parser/test.pdb.compilers.cpp"
 		"lib/analysis/analysis.hpp"
 		"lib/analysis/bb_decomp/bb_decomp.hpp"
 		"lib/analysis/common/common.hpp"
