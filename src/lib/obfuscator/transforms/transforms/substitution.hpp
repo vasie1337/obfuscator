@@ -119,7 +119,7 @@ namespace obfuscator::transforms {
         /// \brief Transform zasm node
         /// \param function Routine that it should transform
         /// \param bb BB that it should transform
-        void run_on_bb(TransformContext&, Function<Img>* function, analysis::bb_t* bb) override {
+        void run_on_bb(TransformContext& /*ctx*/, Function<Img>* function, analysis::bb_t* bb) override {
             /// Iterating over the instructions
             for (auto& insn : bb->temp_insns_copy()) {
                 if (easm::affects_sp(function->machine_mode, *insn->ref)) {

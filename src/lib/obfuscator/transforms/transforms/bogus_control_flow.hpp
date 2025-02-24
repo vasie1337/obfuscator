@@ -8,11 +8,11 @@ namespace obfuscator::transforms {
     template <pe::any_image_t Img>
     class BogusControlFlow final : public FunctionTransform<Img> {
     public:
-        enum Var {
+        enum Var : std::uint8_t {
             MODE = 0,
             EXPR_SIZE = 1,
         };
-        enum Mode {
+        enum Mode : std::uint8_t {
             OPAQUE_PREDICATES = 0,
             RANDOM_PREDICATES = 1,
         };
@@ -96,7 +96,7 @@ namespace obfuscator::transforms {
                         if (auto base = op_mem->getBase(); base.isValid()) {
                             op_mem->setBase(function->lru_reg.get_for_bits(base.getBitSize(function->machine_mode), true));
                         }
-                        if (op_mem->getDisplacement()) {
+                        if (op_mem->getDisplacement() != 0ULL) {
                             op_mem->setDisplacement(rnd::number<std::int8_t>());
                         }
                     }

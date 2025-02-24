@@ -56,8 +56,8 @@ namespace func_parser {
         }
 
         Img* image_ = nullptr;
-        std::vector<function_list_t> function_lists_ = {};
-        function_list_t function_list_ = {}; // function_lists_ combined and sanitized basically
+        std::vector<function_list_t> function_lists_;
+        function_list_t function_list_; // function_lists_ combined and sanitized basically
         config_parser::func_parser_config_t config_ = {};
         config_parser::obfuscator_config_t obfuscator_config_ = {};
         std::optional<progress::Progress> progress_ = std::nullopt;

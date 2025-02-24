@@ -6,7 +6,7 @@
 
 namespace obfuscator {
     namespace detail {
-        enum e_shared_config_variable_name_index {
+        enum e_shared_config_variable_name_index : std::uint8_t {
             CHANCE = 0,
             REPEAT_TIMES = 1,
         };
@@ -60,7 +60,7 @@ namespace obfuscator {
         /// \param value Var stringified value
         /// \param override_default Should we override the default value too?
         /// \return true on success, false on failure
-        bool try_load(const std::string_view name, const std::string_view value, const bool override_default = false) noexcept {
+        bool try_load(const std::string_view name, const std::string_view value, const bool override_default = false) {
             static std::unordered_map<std::string, std::function<void(TransformSharedConfig*, std::string_view, bool)>> callbacks = {};
 
             /// A little bit of overhead with this once flag, but now the init looks n i c e
@@ -77,7 +77,7 @@ namespace obfuscator {
             });
 
             /// Try to find the loader, and load if found
-            if (const auto it = callbacks.find(name.data()); it != std::end(callbacks)) {
+            if (const auto it = callbacks.find(std::string{name}); it != std::end(callbacks)) {
                 it->second(this, value, override_default);
                 return true;
             }
@@ -89,7 +89,7 @@ namespace obfuscator {
         /// \brief Stringify var value by its name
         /// \param var_name variable name
         /// \return stringified value
-        [[nodiscard]] std::string stringify_var(const std::string_view var_name) const noexcept {
+        [[nodiscard]] std::string stringify_var(const std::string_view var_name) const {
             if (var_name == detail::kSharedConfigsVariableNames[detail::CHANCE]) {
                 return std::to_string(chance_);
             }
@@ -158,7 +158,7 @@ namespace obfuscator {
 
     private:
         /// \brief Configuration storage
-        std::unordered_map<TransformTag, TransformSharedConfig> configurations_ = {};
+        std::unordered_map<TransformTag, TransformSharedConfig> configurations_;
     };
 
     /// \brief Transform configuration storage
@@ -173,7 +173,7 @@ namespace obfuscator {
             DEFAULT_CTOR_DTOR(Var);
             DEFAULT_COPY(Var);
 
-            enum Type {
+            enum Type : std::uint8_t {
                 GLOBAL = 0, // one option for all functions
                 PER_FUNCTION, // sets per function
             };
@@ -275,11 +275,11 @@ namespace obfuscator {
 
         private:
             /// \brief Value holder
-            std::any value_ = {};
+            std::any value_;
             /// \brief First value holder
-            std::any default_value_ = {};
+            std::any default_value_;
             /// \brief Var name
-            std::string name_ = {};
+            std::string name_;
             /// \brief Short description (1 line max)
             std::optional<std::string> short_description_ = std::nullopt;
             /// \brief Is var required to set by user
@@ -356,6 +356,6 @@ namespace obfuscator {
 
     private:
         /// \brief A map that stores all the variables with their indices
-        std::unordered_map<Index, Var> variables_ = {};
+        std::unordered_map<Index, Var> variables_;
     };
 } // namespace obfuscator

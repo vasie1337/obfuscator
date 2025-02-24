@@ -1,7 +1,5 @@
 #pragma once
 
-// NOLINTBEGIN(bugprone-macro-parentheses)
-
 #define DEFAULT_CTOR(name) constexpr name() = default
 #define DEFAULT_DTOR(name) ~name() = default
 
@@ -20,5 +18,3 @@
     name& operator=(name const&) = default; \
     name(name&&) noexcept = default;        \
     name& operator=(name&&) noexcept = default
-
-// NOLINTEND(bugprone-macro-parentheses)

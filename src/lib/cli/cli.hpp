@@ -73,7 +73,7 @@ namespace cli {
         pad();
 
         logger::info("Available options:");
-        for (auto& [args, desc] : detail::kCLIOptionsHelp) {
+        for (const auto& [args, desc] : detail::kCLIOptionsHelp) {
             logger::info<1>("{:<12} {:<6} {:<8} -- {}", args[0], args[1], args[2], desc);
         }
         pad();

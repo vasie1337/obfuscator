@@ -51,8 +51,8 @@ namespace config_parser {
         }
 
     private:
-        std::vector<function_configuration_t> function_configurations_ = {};
-        std::vector<transform_configuration_t> global_transform_configurations_ = {};
+        std::vector<function_configuration_t> function_configurations_;
+        std::vector<transform_configuration_t> global_transform_configurations_;
         obfuscator_config_t obfuscator_config_ = {};
         func_parser_config_t func_parser_config_ = {};
     };

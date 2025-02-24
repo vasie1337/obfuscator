@@ -38,7 +38,7 @@ namespace config_parser {
 
         for (std::size_t i = 2; i < argc; ++i) {
             /// Get current arguments
-            std::string arg_ = argv[i];
+            const std::string arg_ = argv[i];
 
             /// \todo @es3n1n: Create a wrapper for these cringe checks
             std::optional<std::string> next_arg_ = i + 1 < argc && argv[i + 1][0] != '-' ? std::make_optional<std::string>(argv[i + 1]) : std::nullopt;

@@ -38,8 +38,9 @@ namespace obfuscator {
         /// \param tag transform tag
         /// \return Config reference
         TransformSharedConfig& enable_transform(const TransformTag tag) {
-            if (std::ranges::find(enabled, tag) == std::end(enabled))
+            if (std::ranges::find(enabled, tag) == std::end(enabled)) {
                 enabled.emplace_back(tag);
+            }
             return TransformSharedConfigStorage::get().get_for(tag);
         }
 

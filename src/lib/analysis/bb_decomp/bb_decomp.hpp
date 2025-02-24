@@ -142,16 +142,16 @@ namespace analysis::bb_decomp {
         rva_t function_start_ = nullptr;
         std::optional<std::size_t> function_size_ = std::nullopt;
 
-        std::unordered_map<rva_t, std::shared_ptr<bb_t>> basic_blocks_ = {};
-        std::vector<std::shared_ptr<bb_t>> virtual_basic_blocks_ = {}; // = without the rva
+        std::unordered_map<rva_t, std::shared_ptr<bb_t>> basic_blocks_;
+        std::vector<std::shared_ptr<bb_t>> virtual_basic_blocks_; // = without the rva
 
-        std::shared_ptr<zasm::Program> program_ = {};
-        std::shared_ptr<zasm::x86::Assembler> assembler_ = {};
+        std::shared_ptr<zasm::Program> program_;
+        std::shared_ptr<zasm::x86::Assembler> assembler_;
         easm::Decoder decoder_;
 
-        std::unordered_map<rva_t, jump_table_t> jump_tables_ = {};
+        std::unordered_map<rva_t, jump_table_t> jump_tables_;
 
-        std::shared_ptr<functional_bb_provider_t> bb_provider_ = {};
+        std::shared_ptr<functional_bb_provider_t> bb_provider_;
     };
 
     template <pe::any_image_t Img>

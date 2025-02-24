@@ -35,8 +35,8 @@
 namespace pe {
     struct relocation_t {
         memory::address rva;
-        std::uint8_t size; // in bytes
-        win::reloc_type_id type;
+        std::uint8_t size = 0; // in bytes
+        win::reloc_type_id type = win::reloc_type_id::rel_based_absolute;
     };
 
     struct dir_properties_t {
@@ -51,7 +51,7 @@ namespace pe {
         explicit section_t(const win::section_header_t& header)
             : virtual_size(header.virtual_size), virtual_address(header.virtual_address), size_raw_data(header.size_raw_data),
               ptr_raw_data(header.ptr_raw_data), characteristics(header.characteristics) {
-            std::memcpy(name.data(), header.name.short_name, name.size() * sizeof(decltype(name)::value_type));
+            std::memcpy(name.data(), reinterpret_cast<const char*>(header.name.short_name), name.size() * sizeof(decltype(name)::value_type));
         }
 
         std::array<char, LEN_SHORT_STR> name = {};
@@ -61,7 +61,7 @@ namespace pe {
         std::uint32_t ptr_raw_data = 0U;
         win::section_characteristics_t characteristics = {};
 
-        std::vector<std::uint8_t> raw_data = {};
+        std::vector<std::uint8_t> raw_data;
 
         /// This struct contains directory offsets within the section, i.e
         /// If a section contains import descriptors the value of iat would be set
@@ -122,7 +122,7 @@ namespace pe {
         explicit operator win::section_header_t() const {
             win::section_header_t result{};
 
-            std::ranges::copy(name, result.name.short_name);
+            std::ranges::copy(name, reinterpret_cast<char*>(result.name.short_name));
             result.virtual_size = virtual_size;
             result.virtual_address = virtual_address;
             result.size_raw_data = size_raw_data;

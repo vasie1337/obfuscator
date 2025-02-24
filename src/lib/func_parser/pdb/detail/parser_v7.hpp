@@ -37,7 +37,7 @@ namespace func_parser::pdb::detail {
         }
 
         template <typename Ty = DBIRecordHeader, typename... Args>
-        void iter_symbols(std::function<void(Ty*)> callback, Args... args) const {
+        void iter_symbols(const std::function<void(Ty*)>& callback, Args... args) const {
             for (auto kind : types::to_array(std::forward<Args>(args)...)) {
                 iter_symbols(kind, callback);
             }
@@ -64,12 +64,12 @@ namespace func_parser::pdb::detail {
         SuperBlock* header_ = nullptr;
 
         // contains virtual addresses, cba storing anything else
-        std::vector<std::uint64_t> sections_ = {};
+        std::vector<std::uint64_t> sections_;
 
         // these streams should be in the right order
-        std::vector<std::vector<std::uint8_t>> streams_ = {};
+        std::vector<std::vector<std::uint8_t>> streams_;
 
         // key is sym kind, values are ptrs to the symbols
-        std::unordered_map<std::uint16_t, std::vector<memory::address>> dbi_symbols_ = {};
+        std::unordered_map<std::uint16_t, std::vector<memory::address>> dbi_symbols_;
     };
 } // namespace func_parser::pdb::detail

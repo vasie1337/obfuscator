@@ -20,15 +20,15 @@ namespace func_parser::map {
     function_list_t discover_functions(const std::filesystem::path& map_path, const std::vector<pe::section_t>& sections) {
         // Reading map file
         //
-        const auto map_content = files::read_file(map_path).value();
-        if (map_content.empty()) {
+        const auto map_content = files::read_file(map_path);
+        if (!map_content.has_value() || map_content->empty()) {
             throw std::runtime_error("Empty map file");
         }
 
         // Converting to string stream
         //
         std::stringstream str_stream;
-        str_stream.str(std::string{reinterpret_cast<const char*>(map_content.data()), map_content.size()});
+        str_stream.str(std::string{reinterpret_cast<const char*>(map_content->data()), map_content->size()});
 
         // Initializing func_parser state
         //

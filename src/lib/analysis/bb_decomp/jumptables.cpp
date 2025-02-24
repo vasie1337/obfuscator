@@ -144,7 +144,7 @@ namespace analysis::bb_decomp {
         for (auto& [rva, info] : jump_tables_) {
             /// Get the table start
             auto* table = image_->template rva_to_ptr<std::uint32_t>(rva);
-            if (!table) {
+            if (table == nullptr) {
                 throw std::runtime_error("analysis: unable to find the jump table, huh?");
             }
 

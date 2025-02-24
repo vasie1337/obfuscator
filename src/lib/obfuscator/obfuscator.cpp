@@ -5,8 +5,8 @@
 #include "obfuscator/function.hpp"
 #include "obfuscator/transforms/scheduler.hpp"
 
-#include <es3n1n/common/progress.hpp>
 #include <es3n1n/common/logger.hpp>
+#include <es3n1n/common/progress.hpp>
 #include <es3n1n/common/random.hpp>
 
 namespace obfuscator {

@@ -162,6 +162,6 @@ namespace pe::detail {
     } // namespace
 
     void update_relocations(const ImgWrapped image, std::vector<std::uint8_t>& data) {
-        return UNWRAP_IMAGE(void, update_relocations_);
+        UNWRAP_IMAGE(void, update_relocations_);
     }
 } // namespace pe::detail

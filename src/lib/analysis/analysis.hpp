@@ -117,11 +117,11 @@ namespace analysis {
         // A lookup table with key set to insn rva and value is the ptr to insn info,
         // \fixme: @es3n1n: ptr could be invalid at some point
         //
-        std::unordered_map<rva_t, insn_t*> instructions_lookup = {};
+        std::unordered_map<rva_t, insn_t*> instructions_lookup;
 
         // BB Provider
         //
-        std::shared_ptr<functional_bb_provider_t> bb_provider = {};
+        std::shared_ptr<functional_bb_provider_t> bb_provider;
     };
 
     template <pe::any_image_t Img>

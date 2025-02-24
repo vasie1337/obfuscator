@@ -9,7 +9,7 @@ namespace analysis::passes {
         DEFAULT_CTOR_DTOR(label_references_t);
         NON_COPYABLE(label_references_t);
 
-        static bool apply(Function<Img>* function, Img*) {
+        static bool apply(Function<Img>* function, Img* /*image*/) {
             // Iterating over referenced RVAs within the function
             //
             for (const auto& [referenced_insn_rva, insn_ptrs] : function->image_references) {

@@ -147,12 +147,12 @@ namespace func_parser::pdb::detail {
         char Name[1]; // NOLINT
     };
 
-    enum PublicSymFlags : uint32_t {
+    enum PublicSymFlags : uint32_t { // NOLINT(performance-enum-size)
         None = 0,
-        Code = 1 << 0,
-        Function = 1 << 1,
-        Managed = 1 << 2,
-        MSIL = 1 << 3,
+        Code = 1U << 0U,
+        Function = 1U << 1U,
+        Managed = 1U << 2U,
+        MSIL = 1U << 3U,
     };
 
     struct DBIPublicSymbol {

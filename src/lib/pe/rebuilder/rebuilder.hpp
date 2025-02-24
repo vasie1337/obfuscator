@@ -4,7 +4,7 @@
 
 namespace pe {
     namespace detail {
-        void update_relocations(ImgWrapped, std::vector<std::uint8_t>& data);
+        void update_relocations(ImgWrapped /*image*/, std::vector<std::uint8_t>& data);
         void init_header(ImgWrapped image, std::vector<std::uint8_t>& data);
         void copy_sections(ImgWrapped image, std::vector<std::uint8_t>& data);
         void update_checksum(ImgWrapped image, std::vector<std::uint8_t>& data);

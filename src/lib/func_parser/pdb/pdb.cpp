@@ -13,15 +13,15 @@ namespace func_parser::pdb {
 
         // Reading file
         //
-        const auto pdb_content = files::read_file(pdb_path).value();
-        if (pdb_content.empty()) [[unlikely]] {
+        const auto pdb_content = files::read_file(pdb_path);
+        if (!pdb_content.has_value() || pdb_content->empty()) [[unlikely]] {
             return {};
         }
 
         // If magic doesn't equal to pdb7 magic then sorry we cannot parse this pdb
         // \todo: @es3n1n: add pdb2 support
         //
-        if (std::memcmp(pdb_content.data(), detail::kMicrosoftPdb7Magic.data(), detail::kMicrosoftPdb7Magic.size()) != 0) {
+        if (std::memcmp(pdb_content->data(), detail::kMicrosoftPdb7Magic.data(), detail::kMicrosoftPdb7Magic.size()) != 0) {
             FIXME_NO_ARG(1, "Only PDB7 is supported atm");
             return {};
         }
@@ -29,7 +29,7 @@ namespace func_parser::pdb {
         // Initialize parser
         //
         function_list_t result = {};
-        const detail::V7Parser parser(pdb_content.data(), pdb_content.size());
+        const detail::V7Parser parser(pdb_content->data(), pdb_content->size());
 
         /// Iterate procedures
         parser.iter_symbols<detail::DBIFunction>(

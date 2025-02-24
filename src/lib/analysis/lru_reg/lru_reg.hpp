@@ -126,6 +126,7 @@ namespace analysis {
         /// \param callback callback that should return RegID
         /// \return filtered RegID that isn't blacklisted
         [[nodiscard]] RegID filter(const std::function<RegID()>& callback) const {
+            // NOLINENXTLINE(cppcoreguidelines-init-variables)
             RegID result;
 
             do {
@@ -136,11 +137,11 @@ namespace analysis {
         }
 
         /// \brief Temporary blacklisted registers
-        std::unordered_set<RegID> blacklisted_ = {};
+        std::unordered_set<RegID> blacklisted_;
         /// \brief Items storage itself
-        std::list<RegID> items_ = {};
+        std::list<RegID> items_;
         /// \brief Unordered set for a bit faster contains checks
-        std::unordered_set<RegID> cache_ = {};
+        std::unordered_set<RegID> cache_;
     };
 
     /// \brief An lru cache for all types of GP registers
@@ -281,6 +282,6 @@ namespace analysis {
 
     private:
         /// \brief gp uptr lru container
-        LRURegContainer storage_ = {};
+        LRURegContainer storage_;
     };
 } // namespace analysis

@@ -22,13 +22,13 @@ namespace {
         const auto binary_path = config.obfuscator_config().binary_path;
 
         logger::info("main: loading binary from {}", binary_path.string());
-        auto file = files::read_file(binary_path).value();
-        if (file.empty()) {
+        auto file = files::read_file(binary_path);
+        if (!file.has_value() || file->empty()) {
             throw std::runtime_error("Got empty binary");
         }
 
-        auto* img_x64 = reinterpret_cast<win::image_x64_t*>(file.data());
-        auto* img_x86 = reinterpret_cast<win::image_x86_t*>(file.data());
+        auto* img_x64 = reinterpret_cast<win::image_x64_t*>(file->data());
+        auto* img_x86 = reinterpret_cast<win::image_x86_t*>(img_x64);
 
         if (!pe::common::is_valid(img_x64)) {
             throw std::runtime_error("Invalid pe header");

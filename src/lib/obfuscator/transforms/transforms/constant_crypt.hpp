@@ -7,7 +7,7 @@ namespace obfuscator::transforms {
     template <pe::any_image_t Img>
     class ConstantCrypt final : public BBTransform<Img> {
     public:
-        enum Var {
+        enum Var : std::uint8_t {
             EXPR_SIZE = 0
         };
 

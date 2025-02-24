@@ -132,11 +132,11 @@ namespace easm {
     }
 
     inline zasm::BitSize get_operand_size(const zasm::MachineMode machine_mode, const zasm::Operand& operand) {
-        if (auto* op_reg = operand.getIf<zasm::Reg>()) {
+        if (const auto* op_reg = operand.getIf<zasm::Reg>()) {
             return op_reg->getBitSize(machine_mode);
         }
 
-        if (auto* op_mem = operand.getIf<zasm::Mem>()) {
+        if (const auto* op_mem = operand.getIf<zasm::Mem>()) {
             return op_mem->getBitSize(machine_mode);
         }
 
@@ -145,12 +145,13 @@ namespace easm {
     }
 
     inline zasm::BitSize get_operand_size(const zasm::MachineMode machine_mode, const zasm::Instruction* insn, const std::size_t index) {
-        auto& operand = insn->getOperand(index);
+        const auto& operand = insn->getOperand(index);
 
-        if (auto* op_imm = operand.getIf<zasm::Imm>()) {
+        if (const auto* op_imm = operand.getIf<zasm::Imm>()) {
             /// Let's see if we know the size of operand
             const auto attributes = insn->getAttribs();
 
+            // NOLINTBEGIN(readability-implicit-bool-conversion)
             if (attributes & zasm::x86::Attribs::OperandSize8) {
                 return zasm::toBitSize(8);
             }
@@ -166,6 +167,7 @@ namespace easm {
             if (attributes & zasm::x86::Attribs::OperandSize64) {
                 return zasm::toBitSize(64);
             }
+            // NOLINTEND(readability-implicit-bool-conversion)
 
             /// Push instruction always pushes the stack width bit size
             if (insn->getMnemonic().value() == ZYDIS_MNEMONIC_PUSH) {
@@ -187,16 +189,16 @@ namespace easm {
     }
 
     inline std::pair<zasm::x86::Gp, zasm::x86::Gp> to_gp_root_gp(const zasm::MachineMode machine_mode, const zasm::Reg reg) {
-        return std::make_pair<zasm::x86::Gp, zasm::x86::Gp>(to_gp(reg), to_root_gp(machine_mode, reg));
+        return std::make_pair(to_gp(reg), to_root_gp(machine_mode, reg));
     }
 
     inline void assert_operand_used_reg(const zasm::MachineMode machine_mode, const zasm::Instruction* insn, const std::size_t index,
                                         const zasm::Reg reg) {
-        if (auto* op_reg = insn->getOperandIf<zasm::Reg>(index)) {
+        if (const auto* op_reg = insn->getOperandIf<zasm::Reg>(index)) {
             assert(to_root_gp(machine_mode, *op_reg).getId() != reg.getId());
         }
 
-        if (auto* op_mem = insn->getOperandIf<zasm::Mem>(index); op_mem != nullptr && op_mem->getBase().isValid()) {
+        if (const auto* op_mem = insn->getOperandIf<zasm::Mem>(index); op_mem != nullptr && op_mem->getBase().isValid()) {
             assert(to_root_gp(machine_mode, op_mem->getBase()).getId() != reg.getId());
         }
     }
@@ -212,14 +214,14 @@ namespace easm {
 
     inline bool affects_sp(const zasm::MachineMode machine_mode, const zasm::Instruction& insn) {
         for (std::size_t i = 0; i < insn.getOperandCount(); ++i) {
-            if (auto* op_mem = insn.getOperandIf<zasm::Mem>(i); op_mem != nullptr) {
+            if (const auto* op_mem = insn.getOperandIf<zasm::Mem>(i); op_mem != nullptr) {
                 if (is_sp(machine_mode, op_mem->getBase())) {
                     return true;
                 }
                 continue;
             }
 
-            if (auto* op_reg = insn.getOperandIf<zasm::Reg>(i); op_reg != nullptr) {
+            if (const auto* op_reg = insn.getOperandIf<zasm::Reg>(i); op_reg != nullptr) {
                 if (is_sp(machine_mode, *op_reg)) {
                     return true;
                 }
@@ -233,12 +235,12 @@ namespace easm {
         std::vector<zasm::Reg> result = {};
 
         for (std::size_t i = 0; i < insn.getOperandCount(); ++i) {
-            if (auto* op_mem = insn.getOperandIf<zasm::Mem>(i); op_mem != nullptr && op_mem->getBase().isValid()) {
+            if (const auto* op_mem = insn.getOperandIf<zasm::Mem>(i); op_mem != nullptr && op_mem->getBase().isValid()) {
                 result.emplace_back(op_mem->getBase());
                 continue;
             }
 
-            if (auto* op_reg = insn.getOperandIf<zasm::Reg>(i); op_reg != nullptr) {
+            if (const auto* op_reg = insn.getOperandIf<zasm::Reg>(i); op_reg != nullptr) {
                 result.emplace_back(*op_reg);
             }
         }

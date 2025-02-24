@@ -12,14 +12,12 @@
 #include <vector>
 #include <zasm/base/mode.hpp>
 
-// NOLINTBEGIN(bugprone-macro-parentheses)
 #define PE_DECL_TEMPLATE_CLASSES(class_name)                \
     template class class_name<pe::Image<win::image_x64_t>>; \
     template class class_name<pe::Image<win::image_x86_t>>
 #define PE_DECL_TEMPLATE_STRUCTS(struct_name)                 \
     template struct struct_name<pe::Image<win::image_x64_t>>; \
     template struct struct_name<pe::Image<win::image_x86_t>>
-// NOLINTEND(bugprone-macro-parentheses)
 
 namespace pe {
     /// Concept for raw images from linux-pe, could also probably check for `win::image_t`
@@ -93,10 +91,10 @@ namespace pe {
         Img* raw_image = nullptr;
 
         /// An unordered map that consists of {rva: reloc_info}
-        std::unordered_map<memory::address, relocation_t> relocations = {};
+        std::unordered_map<memory::address, relocation_t> relocations;
 
         /// A sections list
-        mutable std::vector<section_t> sections = {};
+        mutable std::vector<section_t> sections;
     };
 
     /// A concept for our Image, so that we can just use it within the templates

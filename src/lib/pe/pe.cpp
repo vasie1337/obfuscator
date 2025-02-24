@@ -150,7 +150,7 @@ namespace pe {
             // Getting a section and validating it
             //
             const auto* section = nt_hdr->get_section(i);
-            if (!section) {
+            if (section == nullptr) {
                 continue;
             }
 

@@ -29,8 +29,8 @@ namespace obfuscator {
 
     private:
         Img* image_ = nullptr;
-        config_parser::Config config_ = {};
-        func_parser::Instance<Img> func_parser_ = {};
-        std::vector<function_t> functions_ = {};
+        config_parser::Config config_;
+        func_parser::Instance<Img> func_parser_;
+        std::vector<function_t> functions_;
     };
 } // namespace obfuscator
