@@ -17,22 +17,10 @@ target_compile_features(obfuscator-project INTERFACE
 	cxx_std_23
 )
 
-if(UNIX) # unix
-	target_compile_options(obfuscator-project INTERFACE
-		-stdlib=libc++
-	)
-endif()
-
 if(MSVC) # msvc
 	target_compile_options(obfuscator-project INTERFACE
 		"/wd4661"
 		"/MP"
-	)
-endif()
-
-if(UNIX) # unix
-	target_link_options(obfuscator-project INTERFACE
-		-fuse-ld=lld
 	)
 endif()
 

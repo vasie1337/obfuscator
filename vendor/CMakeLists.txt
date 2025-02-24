@@ -13,12 +13,12 @@ if(POLICY CMP0135)
 	cmake_policy(SET CMP0135 NEW)
 endif()
 if(OBFUSCATOR_BUILD_TESTS) # build-tests
-	message(STATUS "Fetching resources (e700be666074f6e21b6ed5920fd26289c6ed9d1f)...")
+	message(STATUS "Fetching resources (0991d8717700c91dd97deb00b007a064bc3d880a)...")
 	FetchContent_Declare(resources
 		GIT_REPOSITORY
 			"https://github.com/es3n1n/obfuscator-resources.git"
 		GIT_TAG
-			e700be666074f6e21b6ed5920fd26289c6ed9d1f
+			0991d8717700c91dd97deb00b007a064bc3d880a
 	)
 	FetchContent_MakeAvailable(resources)
 

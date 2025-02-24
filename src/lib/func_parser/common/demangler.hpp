@@ -1,6 +1,7 @@
 #pragma once
 #include "func_parser/common/common.hpp"
 
+#include <algorithm>
 #include <LLVMDemangle.h>
 
 namespace func_parser::demangler {

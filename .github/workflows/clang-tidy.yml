@@ -37,12 +37,20 @@ jobs:
           echo "CXX=clang++-19" >> $GITHUB_ENV
 
       - name: Generate build
-        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -OBFUSCATOR_BUILD_TESTS=ON -DCMKR_SKIP_GENERATION=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DOBFUSCATOR_BUILD_TESTS=ON -DCMKR_SKIP_GENERATION=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: 3.11
+
+      - name: Adjust compile commands
+        run: python3 scripts/adjust_compile_commands.py build/compile_commands.json
+
+      - name: Adjust dependencies' .clang-tidy
+        run: |
+          echo "Checks: '-*'" > build/.clang-tidy
+          echo "Checks: '-*'" > vendor/zasm/.clang-tidy
 
       - name: Run clang tidy
         run: |

@@ -3,8 +3,8 @@
 
 #include <cstdint>
 #include <optional>
-#include <variant>
 #include <stdexcept>
+#include <variant>
 
 #include <zasm/zasm.hpp>
 

@@ -61,9 +61,9 @@ jobs:
           sudo add-apt-repository ppa:apt-fast/stable
           sudo apt-get update
           sudo apt-get install -yq --no-install-recommends apt-fast
-          sudo apt-fast install -yq --no-install-recommends gcc-13 g++-13 libstdc++-13-dev
-          echo "CC=gcc-13" >> $GITHUB_ENV
-          echo "CXX=g++-13" >> $GITHUB_ENV
+          sudo apt-fast install -yq --no-install-recommends gcc-14 g++-14 libstdc++-14-dev
+          echo "CC=gcc-14" >> $GITHUB_ENV
+          echo "CXX=g++-14" >> $GITHUB_ENV
 
       - name: Configure CMake
         run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DOBFUSCATOR_BUILD_TESTS=ON -DCMKR_SKIP_GENERATION=ON
@@ -73,8 +73,8 @@ jobs:
 
       - name: Test (Unix)
         if: contains(matrix.os, 'ubuntu')
-        run: ./build/obfuscator-tests
+        run: ./build/src/obfuscator-tests
 
       - name: Test (Windows)
         if: contains(matrix.os, 'windows')
-        run: .\build\${{ env.BUILD_TYPE }}\obfuscator-tests.exe
+        run: .\build\src\${{ env.BUILD_TYPE }}\obfuscator-tests.exe
