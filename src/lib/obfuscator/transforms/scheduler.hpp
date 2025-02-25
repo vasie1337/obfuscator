@@ -11,7 +11,7 @@ namespace obfuscator {
     template <pe::any_image_t Img>
     class TransformContainer {
     public:
-        DEFAULT_CTOR_DTOR(TransformContainer);
+        DEFAULT_CT_CTOR_DTOR(TransformContainer);
         NON_COPYABLE(TransformContainer);
         using T = Img;
         using TransformPtr = std::unique_ptr<Transform<Img>>;

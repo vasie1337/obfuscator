@@ -7,7 +7,7 @@
 namespace config_parser {
     class Config {
     public:
-        DEFAULT_CTOR_DTOR(Config);
+        DEFAULT_CT_CTOR_DTOR(Config);
         DEFAULT_COPY(Config);
 
         [[nodiscard]] function_configuration_t& create_function_config() {

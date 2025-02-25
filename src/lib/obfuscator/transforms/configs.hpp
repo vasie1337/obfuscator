@@ -170,7 +170,7 @@ namespace obfuscator {
 
         class Var {
         public:
-            DEFAULT_CTOR_DTOR(Var);
+            DEFAULT_CT_CTOR_DTOR(Var);
             DEFAULT_COPY(Var);
 
             enum Type : std::uint8_t {

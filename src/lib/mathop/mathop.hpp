@@ -85,7 +85,7 @@ namespace mathop {
     /// \brief Expression with operations
     class Expression {
     public:
-        DEFAULT_CTOR_DTOR(Expression);
+        DEFAULT_CT_CTOR_DTOR(Expression);
         DEFAULT_COPY(Expression);
 
         /// \brief Emplace new operation

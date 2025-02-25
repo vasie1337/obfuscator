@@ -45,7 +45,7 @@ namespace pe {
     };
 
     struct section_t {
-        DEFAULT_CTOR_DTOR(section_t);
+        DEFAULT_CT_CTOR_DTOR(section_t);
         DEFAULT_COPY(section_t);
 
         explicit section_t(const win::section_header_t& header)

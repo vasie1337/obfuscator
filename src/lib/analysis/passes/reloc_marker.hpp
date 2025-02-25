@@ -5,7 +5,7 @@
 namespace analysis::passes {
     template <pe::any_image_t Img>
     struct reloc_marker_t {
-        DEFAULT_CTOR_DTOR(reloc_marker_t);
+        DEFAULT_CT_CTOR_DTOR(reloc_marker_t);
         NON_COPYABLE(reloc_marker_t);
 
         static bool apply_insn(Function<Img>* function [[maybe_unused]], insn_t& instruction, Img* image) {

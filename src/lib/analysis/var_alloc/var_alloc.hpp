@@ -38,7 +38,7 @@ namespace analysis {
     template <pe::any_image_t Img>
     class VarAlloc {
     public:
-        DEFAULT_CTOR_DTOR(VarAlloc);
+        DEFAULT_CT_CTOR_DTOR(VarAlloc);
         DEFAULT_COPY(VarAlloc);
         explicit VarAlloc(LRUReg<Img>* lru_reg): lru_reg_(lru_reg) { }
 

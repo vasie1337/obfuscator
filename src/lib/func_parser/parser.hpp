@@ -9,7 +9,7 @@ namespace func_parser {
     template <pe::any_image_t Img>
     class Instance {
     public:
-        DEFAULT_CTOR_DTOR(Instance);
+        DEFAULT_CT_CTOR_DTOR(Instance);
         DEFAULT_COPY(Instance);
 
         void setup(Img* image, const config_parser::func_parser_config_t& config, const config_parser::obfuscator_config_t& obfuscator_config) {

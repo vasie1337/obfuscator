@@ -662,7 +662,7 @@ namespace analysis {
     };
 
     struct bb_storage_t {
-        DEFAULT_CTOR_DTOR(bb_storage_t);
+        DEFAULT_CT_CTOR_DTOR(bb_storage_t);
         DEFAULT_COPY(bb_storage_t);
         explicit bb_storage_t(const std::vector<std::shared_ptr<bb_t>>& value): basic_blocks(value) { }
 

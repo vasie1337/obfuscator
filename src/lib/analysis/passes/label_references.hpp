@@ -6,7 +6,7 @@
 namespace analysis::passes {
     template <pe::any_image_t Img>
     struct label_references_t {
-        DEFAULT_CTOR_DTOR(label_references_t);
+        DEFAULT_CT_CTOR_DTOR(label_references_t);
         NON_COPYABLE(label_references_t);
 
         static bool apply(Function<Img>* function, Img* /*image*/) {

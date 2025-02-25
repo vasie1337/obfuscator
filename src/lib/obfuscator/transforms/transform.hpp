@@ -50,7 +50,7 @@ namespace obfuscator {
     template <pe::any_image_t Img>
     class Transform {
     public:
-        DEFAULT_CTOR(Transform);
+        DEFAULT_CT_CTOR(Transform);
         NON_COPYABLE(Transform);
         virtual ~Transform() = default;
 

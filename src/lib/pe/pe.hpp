@@ -32,7 +32,7 @@ namespace pe {
             update_sections();
             update_relocations();
         }
-        DEFAULT_CTOR_DTOR(Image);
+        DEFAULT_CT_CTOR_DTOR(Image);
         DEFAULT_COPY(Image);
 
         [[nodiscard]] bool is_x64() const;
