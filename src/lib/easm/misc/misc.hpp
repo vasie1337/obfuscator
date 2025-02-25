@@ -192,8 +192,8 @@ namespace easm {
         return std::make_pair(to_gp(reg), to_root_gp(machine_mode, reg));
     }
 
-    inline void assert_operand_used_reg(const zasm::MachineMode machine_mode, const zasm::Instruction* insn, const std::size_t index,
-                                        const zasm::Reg reg) {
+    inline void assert_operand_used_reg(const zasm::MachineMode machine_mode [[maybe_unused]], const zasm::Instruction* insn, const std::size_t index,
+                                        const zasm::Reg reg [[maybe_unused]]) {
         if (const auto* op_reg = insn->getOperandIf<zasm::Reg>(index)) {
             assert(to_root_gp(machine_mode, *op_reg).getId() != reg.getId());
         }
@@ -203,7 +203,8 @@ namespace easm {
         }
     }
 
-    inline void assert_operand_size(const zasm::MachineMode machine_mode, const zasm::Instruction* insn, const std::size_t index, const zasm::Reg reg) {
+    inline void assert_operand_size(const zasm::MachineMode machine_mode [[maybe_unused]], const zasm::Instruction* insn [[maybe_unused]],
+                                    const std::size_t index [[maybe_unused]], const zasm::Reg reg [[maybe_unused]]) {
         assert(get_operand_size(machine_mode, insn, index) == reg.getBitSize(machine_mode));
     }
 

@@ -296,9 +296,7 @@ namespace analysis {
             predecessors.emplace_back(value);
         }
 
-        std::shared_ptr<label_t> push_label(zasm::Node* label_node_ptr, const bb_provider_t* bb_provider) {
-            assert(bb_provider != nullptr);
-
+        std::shared_ptr<label_t> push_label(zasm::Node* label_node_ptr, const bb_provider_t* /*bb_provider*/) {
             // Acquire label ref
             auto* const ref = label_node_ptr->getIf<zasm::Label>();
             if (ref == nullptr) {
