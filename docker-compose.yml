@@ -1,13 +1,11 @@
-version: '3.8'
-
 services:
   obfuscator:
     image: ghcr.io/vasie1337/obfuscator:latest
     volumes:
-      - obfuscator-data:/data
-    # The default command from the Dockerfile (obfuscator --help) will be used.
-    # You can override it here if needed, e.g.:
-    command: ["input.exe", "-o", "output.exe"]
+      # Mount the host directory containing test.exe into /data inside the container
+      - C:/Users/vasie/source/repos/test/x64/Release:/data
+    working_dir: /data # Set working directory inside the container
+    # Specify the function(s) and transform(s) to apply
+    command: ["test.exe", "-o", "output.exe", "-f", "main", "-t", "BogusControlFlow"]
 
-volumes:
-  obfuscator-data: 
+# Removed named volume definition as we are using a bind mount now 
