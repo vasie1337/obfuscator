@@ -24,7 +24,9 @@ WORKDIR /src
 COPY . .
 
 # Build the project
-RUN cmake -B build -GNinja -DCMAKE_BUILD_TYPE=Release -DOBFUSCATOR_BUILD_TESTS=0
+RUN cmake -B build -GNinja -DCMAKE_BUILD_TYPE=Release -DOBFUSCATOR_BUILD_TESTS=0 \
+    -DCMAKE_CXX_FLAGS="-DFMT_HEADER_ONLY -I/usr/include/fmt -include fmt/format.h -D'std::format=fmt::format' -D'std::vformat=fmt::vformat' -D'std::make_format_args=fmt::make_format_args' -D'std::make_wformat_args=fmt::make_format_args'"
+
 RUN cmake --build build --config Release
 
 # Create a smaller runtime image
