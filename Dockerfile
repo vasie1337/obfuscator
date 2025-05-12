@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     ninja-build \
     clang-15 \
     libstdc++-12-dev \
+    libc++-15-dev \
+    libc++abi-15-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Clang as the default compiler
