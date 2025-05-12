@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libstdc++-12-dev \
     libc++-15-dev \
     libc++abi-15-dev \
+    libfmt-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Clang as the default compiler
@@ -32,6 +33,7 @@ FROM ubuntu:22.04
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
     libstdc++6 \
+    libfmt8 \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy the built executable from the builder stage
