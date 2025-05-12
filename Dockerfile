@@ -1,47 +1,48 @@
-FROM ubuntu:22.04 AS builder
+FROM ubuntu:22.04
 
-# Install necessary dependencies
+# Set non-interactive installation
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install necessary build tools and add LLVM repository for newer clang
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
     git \
     ninja-build \
-    clang-15 \
-    libstdc++-12-dev \
-    libc++-15-dev \
-    libc++abi-15-dev \
-    libfmt-dev \
-    && rm -rf /var/lib/apt/lists/*
+    lsb-release \
+    wget \
+    software-properties-common \
+    gnupg \
+    && wget https://apt.llvm.org/llvm.sh \
+    && chmod +x llvm.sh \
+    && ./llvm.sh 17 all \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm llvm.sh
 
-# Set Clang as the default compiler
-ENV CC=clang-15
-ENV CXX=clang++-15
+# Set clang as the default compiler to ensure C++23 support
+ENV CC=clang-17
+ENV CXX=clang++-17
 
-# Set working directory
-WORKDIR /src
-
-# Copy source code
-COPY . .
-
-# Build the project
-RUN cmake -B build -GNinja -DCMAKE_BUILD_TYPE=Release -DOBFUSCATOR_BUILD_TESTS=0 \
-    -DCMAKE_CXX_FLAGS="-DFMT_HEADER_ONLY -I/usr/include/fmt -include fmt/format.h"
-
-RUN cmake --build build --config Release
-
-# Create a smaller runtime image
-FROM ubuntu:22.04
-
-# Install runtime dependencies
-RUN apt-get update && apt-get install -y \
-    libstdc++6 \
-    libfmt8 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy the built executable from the builder stage
-COPY --from=builder /src/build/src/bin/obfuscator /usr/local/bin/
-
+# Create app directory
 WORKDIR /app
 
+# Clone the repository (alternatively, you can COPY from local or mount at runtime)
+# For building from a local copy, comment this line and use COPY . /app instead
+RUN git clone --recurse-submodules https://github.com/es3n1n/obfuscator.git .
+
+# Build the obfuscator
+RUN cmake -B build -DOBFUSCATOR_BUILD_TESTS=0 -DCMAKE_CXX_FLAGS="-stdlib=libc++" && \
+    cmake --build build --config Release
+
+# Add the obfuscator to PATH
+ENV PATH="/app/build/src:${PATH}"
+
+# Create a directory for input/output files
+RUN mkdir -p /data
+WORKDIR /data
+
+# Command that will be run when the container starts
 ENTRYPOINT ["obfuscator"]
-CMD ["--help"] 
+
+# Default arguments (override with docker run)
+CMD ["--help"]
